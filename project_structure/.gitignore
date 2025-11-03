@@ -1,0 +1,102 @@
+# Dependencies and libraries
+third_party/
+lib/
+*.lib
+*.dll
+*.so
+*.dylib
+
+# Build outputs
+build/
+cmake-build-*/
+CMakeFiles/
+CMakeCache.txt
+cmake_install.cmake
+compile_commands.json
+
+# IDE and editor files
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.DS_Store
+Thumbs.db
+
+# Compiled files
+*.o
+*.obj
+*.exe
+*.app
+*.vst3
+*.component
+*.lv2/
+*.dmg
+*.deb
+*.rpm
+
+# Logs and temporary files
+*.log
+*.tmp
+*.temp
+session.log
+
+# User settings
+vital_settings.json
+user_presets/
+*.user
+
+# Audio files (for testing)
+*.wav
+*.aiff
+*.mp3
+*.flac
+
+# Plugin cache
+PluginInfo.plist
+plugin_cache/
+
+# Doxygen output
+docs/html/
+docs/latex/
+
+# Coverage reports
+*.gcno
+*.gcda
+coverage/
+
+# Android
+android/app/build/
+
+# Windows
+.vs/
+*.opensdf
+*.sdf
+*.user
+ipch/
+
+# macOS
+*.xcworkspace
+*.xcuserstate
+xcuserdata/
+
+# Linux
+*.orig
+
+# Package outputs
+*.zip
+*.tar.gz
+*.tar.bz2
+
+# Performance profiling
+*.prof
+*.gmon
+
+# Memory leak detection
+*.mem
+
+# Testing
+test_results/
+*.test
+.coverage
+.pytest_cache/

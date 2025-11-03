@@ -1,0 +1,138 @@
+{
+  "name": "Warm Analog Lead",
+  "category": "Lead",
+  "author": "Vital Team",
+  "description": "Classic analog-style lead with warm character",
+  "version": "1.0",
+  
+  "oscillators": [
+    {
+      "index": 0,
+      "waveform": "sawtooth",
+      "frequency": 220.0,
+      "detune": 0.0,
+      "mix": 0.7,
+      "enabled": true
+    },
+    {
+      "index": 1,
+      "waveform": "sawtooth",
+      "frequency": 221.0,
+      "detune": 3.0,
+      "mix": 0.3,
+      "enabled": true
+    },
+    {
+      "index": 2,
+      "waveform": "noise",
+      "frequency": 440.0,
+      "detune": 0.0,
+      "mix": 0.0,
+      "enabled": false
+    },
+    {
+      "index": 3,
+      "waveform": "sine",
+      "frequency": 110.0,
+      "detune": 0.0,
+      "mix": 0.0,
+      "enabled": false
+    }
+  ],
+  
+  "filter": {
+    "type": "lowpass",
+    "cutoff": 1200.0,
+    "resonance": 0.3,
+    "gain": 0.0,
+    "enabled": true
+  },
+  
+  "envelopes": {
+    "amplitude": {
+      "attack": 0.01,
+      "decay": 0.5,
+      "sustain": 0.7,
+      "release": 1.0,
+      "velocity_sensitivity": 0.5
+    },
+    "filter": {
+      "attack": 0.05,
+      "decay": 0.8,
+      "sustain": 0.6,
+      "release": 1.2,
+      "velocity_sensitivity": 0.3
+    },
+    "pitch": {
+      "attack": 0.0,
+      "decay": 0.2,
+      "sustain": 1.0,
+      "release": 0.1,
+      "velocity_sensitivity": 0.0
+    }
+  },
+  
+  "lfos": [
+    {
+      "index": 0,
+      "frequency": 0.2,
+      "sync_mode": "free",
+      "depth": 0.1,
+      "destination": "filter_cutoff",
+      "phase_invert": false,
+      "enabled": true
+    },
+    {
+      "index": 1,
+      "frequency": 5.0,
+      "sync_mode": "free",
+      "depth": 0.05,
+      "destination": "pitch",
+      "phase_invert": false,
+      "enabled": true
+    }
+  ],
+  
+  "effects": {
+    "reverb": {
+      "enabled": true,
+      "room_size": 0.6,
+      "damping": 0.7,
+      "wet_level": 0.2,
+      "dry_level": 0.8,
+      "predelay": 20.0
+    },
+    "chorus": {
+      "enabled": false,
+      "rate": 1.5,
+      "depth": 0.3,
+      "feedback": 0.2,
+      "mix": 0.5
+    },
+    "compressor": {
+      "enabled": true,
+      "threshold": -12.0,
+      "ratio": 4.0,
+      "attack": 0.01,
+      "release": 0.1,
+      "gain": 2.0
+    }
+  },
+  
+  "settings": {
+    "portamento": 0.0,
+    "unison_voices": 1,
+    "unison_detune": 0.0,
+    "master_volume": 0.8,
+    "polyphony": 16,
+    "legato": false
+  },
+  
+  "midi_mapping": {
+    "ccMappings": [
+      {"parameter": "filter_cutoff", "cc": 74, "channel": 0},
+      {"parameter": "filter_resonance", "cc": 71, "channel": 0},
+      {"parameter": "master_volume", "cc": 7, "channel": 0}
+    ]
+  }
+}

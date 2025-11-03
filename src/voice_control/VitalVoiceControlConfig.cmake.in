@@ -1,0 +1,68 @@
+@PACKAGE_INIT@
+
+include(CMakeFindDependencyMacro)
+
+# Find required dependencies
+find_dependency(Threads)
+
+# Find optional dependencies
+if(VITAL_VOICE_ENABLE_PORTAUDIO)
+    find_dependency(PkgConfig REQUIRED)
+    pkg_check_modules(PORTAUDIO QUIET portaudio-2.0)
+    if(PORTAUDIO_FOUND)
+        set(VITAL_VOICE_ENABLE_PORTAUDIO TRUE)
+    else()
+        set(VITAL_VOICE_ENABLE_PORTAUDIO FALSE)
+    endif()
+endif()
+
+if(VITAL_VOICE_ENABLE_JSON)
+    find_dependency(nlohmann_json 3.9.0 QUIET)
+    if(nlohmann_json_FOUND)
+        set(VITAL_VOICE_ENABLE_JSON TRUE)
+    else()
+        set(VITAL_VOICE_ENABLE_JSON FALSE)
+    endif()
+endif()
+
+# Include configuration targets
+include("${CMAKE_CURRENT_LIST_DIR}/VitalVoiceControlTargets.cmake")
+
+# Set version
+set(PACKAGE_VERSION "@PROJECT_VERSION@")
+
+# Set configuration variables
+set(VITAL_VOICE_BUILD_EXAMPLES @VITAL_VOICE_BUILD_EXAMPLES@)
+set(VITAL_VOICE_BUILD_TESTS @VITAL_VOICE_BUILD_TESTS@)
+set(VITAL_VOICE_ENABLE_PORTAUDIO @VITAL_VOICE_ENABLE_PORTAUDIO@)
+set(VITAL_VOICE_ENABLE_JSON @VITAL_VOICE_ENABLE_JSON@)
+set(VITAL_VOICE_ENABLE_COVERAGE @VITAL_VOICE_ENABLE_COVERAGE@)
+
+# Provide get_config function
+function(get_config config_var)
+    if(DEFINED ${config_var})
+        set(${config_var} ${${config_var}} PARENT_SCOPE)
+    else()
+        set(${config_var} "" PARENT_SCOPE)
+    endif()
+endfunction()
+
+# Configuration summary function
+function(print_config_summary)
+    message(STATUS "========================================")
+    message(STATUS "Vital Voice Control System Configuration")
+    message(STATUS "========================================")
+    message(STATUS "Build Examples: ${VITAL_VOICE_BUILD_EXAMPLES}")
+    message(STATUS "Build Tests: ${VITAL_VOICE_BUILD_TESTS}")
+    message(STATUS "PortAudio Support: ${VITAL_VOICE_ENABLE_PORTAUDIO}")
+    message(STATUS "JSON Support: ${VITAL_VOICE_ENABLE_JSON}")
+    message(STATUS "Code Coverage: ${VITAL_VOICE_ENABLE_COVERAGE}")
+    message(STATUS "Package Version: ${PACKAGE_VERSION}")
+    message(STATUS "Installation Prefix: ${CMAKE_INSTALL_PREFIX}")
+    message(STATUS "========================================")
+endfunction()
+
+# Convenience variables for users
+set(VITAL_VOICE_INCLUDE_DIRS "${PACKAGE_PREFIX_DIR}/include")
+set(VITAL_VOICE_LIBRARY_DIRS "${PACKAGE_PREFIX_DIR}/lib")
+set(VITAL_VOICE_ASSETS_DIR "${PACKAGE_PREFIX_DIR}/share/vital-voice-control/assets")
